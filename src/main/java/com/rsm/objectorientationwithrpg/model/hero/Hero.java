@@ -2,40 +2,64 @@ package com.rsm.objectorientationwithrpg.model.hero;
 
 import com.rsm.objectorientationwithrpg.model.item.Item;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
 public abstract class Hero {
 
     protected String name;
 
     protected Gender gender;
 
-    protected Integer level = 1;
-
-    protected BigDecimal experience = new BigDecimal(0);
+    protected States states = States.IDLE;
 
     protected List<Item> items;
 
+    protected BigDecimal experience = new BigDecimal(0);
+
+    @Min(1)
+    @Max(50)
+    protected Integer level = 1;
+
+    @Min(0)
+    @Max(10000)
     protected Integer vitality;
 
+    @Min(0)
+    @Max(10000)
     protected Integer stamina;
 
+    @Min(1)
+    @Max(200)
     protected Integer strength;
 
+    @Min(1)
+    @Max(200)
     protected Integer dexterity;
 
+    @Min(1)
+    @Max(200)
     protected Integer endurance;
 
+    @Min(1)
+    @Max(200)
     protected Integer intelligence;
 
+    @Min(1)
+    @Max(200)
     protected Integer agility;
 
+    @Min(1)
+    @Max(200)
     protected Integer alertness;
 
+    @Min(1)
+    @Max(200)
     protected Integer luck;
-
-    protected States states = States.IDLE;
 
     public void act(States state){
         if(this.states != States.DIE){
@@ -59,12 +83,20 @@ public abstract class Hero {
         this.gender = gender;
     }
 
-    public Integer getLevel() {
-        return level;
+    public States getStates() {
+        return states;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setStates(States states) {
+        this.states = states;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        this.getItems().add(item);
     }
 
     public BigDecimal getExperience() {
@@ -75,12 +107,12 @@ public abstract class Hero {
         this.experience = experience;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void addItem(Item item) {
-        this.getItems().add(item);
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Integer getVitality() {
@@ -153,14 +185,6 @@ public abstract class Hero {
 
     public void setLuck(Integer luck) {
         this.luck = luck;
-    }
-
-    public States getStates() {
-        return states;
-    }
-
-    public void setStates(States states) {
-        this.states = states;
     }
 
 }
