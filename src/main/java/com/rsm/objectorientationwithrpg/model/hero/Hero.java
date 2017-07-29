@@ -1,4 +1,4 @@
-package com.rsm.objectorientationwithrpg.model;
+package com.rsm.objectorientationwithrpg.model.hero;
 
 public abstract class Hero {
 
@@ -21,6 +21,8 @@ public abstract class Hero {
     protected Integer agility;
 
     protected Integer alertness;
+
+    protected Integer luck;
 
     protected States states;
 
@@ -102,6 +104,14 @@ public abstract class Hero {
 
     public void setAlertness(Integer alertness) {
         this.alertness = alertness;
+    }
+
+    public Integer getLuck() {
+        return luck;
+    }
+
+    public void setLuck(Integer luck) {
+        this.luck = luck;
     }
 
     public States getStates() {
