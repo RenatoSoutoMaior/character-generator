@@ -2,6 +2,10 @@ package com.rsm.objectorientationwithrpg.model;
 
 public abstract class Hero {
 
+    private String name;
+
+    private Gender gender;
+
     private Integer vitality;
 
     private Integer stamina;
@@ -19,6 +23,22 @@ public abstract class Hero {
     private Integer alertness;
 
     private States states;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
     public Integer getVitality() {
         return vitality;
