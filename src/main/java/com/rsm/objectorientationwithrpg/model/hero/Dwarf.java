@@ -5,6 +5,7 @@ public class Dwarf extends Hero {
     public Dwarf(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 90;
         this.stamina = 40;
         this.strength = 3;

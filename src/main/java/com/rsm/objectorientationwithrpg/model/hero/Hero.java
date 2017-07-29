@@ -6,6 +6,8 @@ public abstract class Hero {
 
     protected Gender gender;
 
+    protected Integer level;
+
     protected Integer vitality;
 
     protected Integer stamina;
@@ -26,6 +28,12 @@ public abstract class Hero {
 
     protected States states;
 
+    public void act(States state){
+        if(this.states != States.DIE){
+            this.setStates(state);
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +48,14 @@ public abstract class Hero {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Integer getVitality() {

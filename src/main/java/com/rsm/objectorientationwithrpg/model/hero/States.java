@@ -2,7 +2,7 @@ package com.rsm.objectorientationwithrpg.model.hero;
 
 public enum States {
 
-    IDLE("Idle"), WALKING("Walking"), RUNNING("Running"), JUMPING("Jumping"), ATTACKING("Attacking"), DIE("Die");
+    ATTACKING("Attacking"), DIE("Die"), IDLE("Idle"), JUMPING("Jumping"), RUNNING("Running"), WALKING("Walking");
 
     States(String description) {
     }

@@ -5,6 +5,7 @@ public class Farmer extends Hero {
     public Farmer(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 100;
         this.stamina = 50;
         this.strength = 1;

@@ -5,6 +5,7 @@ public class Hunter extends Hero {
     public Hunter(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 115;
         this.stamina = 75;
         this.strength = 1;

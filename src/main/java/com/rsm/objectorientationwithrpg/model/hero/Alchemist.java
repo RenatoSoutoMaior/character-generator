@@ -5,6 +5,7 @@ public class Alchemist extends Hero {
     public Alchemist(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 50;
         this.stamina = 110;
         this.strength = 1;

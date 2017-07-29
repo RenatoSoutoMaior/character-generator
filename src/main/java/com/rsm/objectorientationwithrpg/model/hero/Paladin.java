@@ -5,6 +5,7 @@ public class Paladin extends Hero {
     public Paladin(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 150;
         this.stamina = 20;
         this.strength = 3;

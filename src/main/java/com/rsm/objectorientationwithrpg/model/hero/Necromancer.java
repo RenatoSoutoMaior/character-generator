@@ -5,6 +5,7 @@ public class Necromancer extends Hero {
     public Necromancer(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 90;
         this.stamina = 120;
         this.strength = 1;

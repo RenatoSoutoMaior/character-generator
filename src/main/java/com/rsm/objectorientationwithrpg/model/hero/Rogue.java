@@ -5,6 +5,7 @@ public class Rogue extends Hero {
     public Rogue(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 120;
         this.stamina = 80;
         this.strength = 1;

@@ -5,6 +5,7 @@ public class Elf extends Hero {
     public Elf(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 130;
         this.stamina = 80;
         this.strength = 1;

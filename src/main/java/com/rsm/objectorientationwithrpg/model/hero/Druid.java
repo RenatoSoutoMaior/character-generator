@@ -5,6 +5,7 @@ public class Druid extends Hero {
     public Druid(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
+        this.level = 1;
         this.vitality = 80;
         this.stamina = 150;
         this.strength = 1;
