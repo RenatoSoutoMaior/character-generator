@@ -5,7 +5,6 @@ public class Shaman extends Hero {
     public Shaman(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
-        this.level = 1;
         this.vitality = 60;
         this.stamina = 125;
         this.strength = 1;
@@ -15,6 +14,5 @@ public class Shaman extends Hero {
         this.agility = 1;
         this.alertness = 2;
         this.luck = 2;
-        this.states = States.IDLE;
     }
 }

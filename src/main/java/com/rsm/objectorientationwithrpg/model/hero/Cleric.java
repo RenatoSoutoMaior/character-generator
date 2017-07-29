@@ -5,7 +5,6 @@ public class Cleric extends Hero {
     public Cleric(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
-        this.level = 1;
         this.vitality = 40;
         this.stamina = 160;
         this.strength = 1;
@@ -15,6 +14,5 @@ public class Cleric extends Hero {
         this.agility = 1;
         this.alertness = 3;
         this.luck = 2;
-        this.states = States.IDLE;
     }
 }

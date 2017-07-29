@@ -5,7 +5,6 @@ public class Rogue extends Hero {
     public Rogue(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
-        this.level = 1;
         this.vitality = 120;
         this.stamina = 80;
         this.strength = 1;
@@ -15,6 +14,5 @@ public class Rogue extends Hero {
         this.agility = 2;
         this.alertness = 4;
         this.luck = 1;
-        this.states = States.IDLE;
     }
 }

@@ -5,7 +5,6 @@ public class Barbarians extends Hero {
     public Barbarians(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
-        this.level = 1;
         this.vitality = 170;
         this.stamina = 20;
         this.strength = 3;
@@ -15,6 +14,5 @@ public class Barbarians extends Hero {
         this.agility = 1;
         this.alertness = 1;
         this.luck = 1;
-        this.states = States.IDLE;
     }
 }

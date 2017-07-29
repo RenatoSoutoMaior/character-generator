@@ -1,12 +1,21 @@
 package com.rsm.objectorientationwithrpg.model.hero;
 
+import com.rsm.objectorientationwithrpg.model.item.Item;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 public abstract class Hero {
 
     protected String name;
 
     protected Gender gender;
 
-    protected Integer level;
+    protected Integer level = 1;
+
+    protected BigDecimal experience = new BigDecimal(0);
+
+    protected List<Item> items;
 
     protected Integer vitality;
 
@@ -26,7 +35,7 @@ public abstract class Hero {
 
     protected Integer luck;
 
-    protected States states;
+    protected States states = States.IDLE;
 
     public void act(States state){
         if(this.states != States.DIE){
@@ -56,6 +65,22 @@ public abstract class Hero {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public BigDecimal getExperience() {
+        return experience;
+    }
+
+    public void setExperience(BigDecimal experience) {
+        this.experience = experience;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        this.getItems().add(item);
     }
 
     public Integer getVitality() {
