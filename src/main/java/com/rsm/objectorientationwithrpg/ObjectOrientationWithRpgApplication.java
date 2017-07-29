@@ -1,12 +1,12 @@
-package com.rsm.oowithrpg;
+package com.rsm.objectorientationwithrpg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OowithrpgApplication {
+public class ObjectOrientationWithRpgApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OowithrpgApplication.class, args);
+		SpringApplication.run(ObjectOrientationWithRpgApplication.class, args);
 	}
 }

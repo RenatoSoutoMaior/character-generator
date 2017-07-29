@@ -1,4 +1,4 @@
-package com.rsm.oowithrpg;
+package com.rsm.objectorientationwithrpg;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(OowithrpgApplication.class);
+		return application.sources(ObjectOrientationWithRpgApplication.class);
 	}
 
 }

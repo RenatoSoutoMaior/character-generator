@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.rsm</groupId>
-	<artifactId>oowithrpg</artifactId>
+	<artifactId>object-orientation-with-rpg</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>oowithrpg</name>
+	<name>object-orientation-with-rpg</name>
 	<description>Project created for object-oriented practice with examples from the RPG world.</description>
 
 	<parent>
