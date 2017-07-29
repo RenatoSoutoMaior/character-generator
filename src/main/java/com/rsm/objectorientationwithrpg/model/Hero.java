@@ -2,27 +2,27 @@ package com.rsm.objectorientationwithrpg.model;
 
 public abstract class Hero {
 
-    private String name;
+    protected String name;
 
-    private Gender gender;
+    protected Gender gender;
 
-    private Integer vitality;
+    protected Integer vitality;
 
-    private Integer stamina;
+    protected Integer stamina;
 
-    private Integer strength;
+    protected Integer strength;
 
-    private Integer dexterity;
+    protected Integer dexterity;
 
-    private Integer endurance;
+    protected Integer endurance;
 
-    private Integer intelligence;
+    protected Integer intelligence;
 
-    private Integer agility;
+    protected Integer agility;
 
-    private Integer alertness;
+    protected Integer alertness;
 
-    private States states;
+    protected States states;
 
     public String getName() {
         return name;
