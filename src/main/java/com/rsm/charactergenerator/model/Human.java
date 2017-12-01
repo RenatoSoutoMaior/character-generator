@@ -1,5 +1,7 @@
 package com.rsm.charactergenerator.model;
 
+import com.rsm.charactergenerator.model.profession.Profession;
+
 public class Human {
 
     private String name;
@@ -7,18 +9,16 @@ public class Human {
     private SkinColor skinColor;
     private Height height;
     private Weight weight;
-    private Integer legsQuantity = 2;
-    private Integer armsQuantity = 2;
-    private Integer earsQuantity = 2;
-    private Boolean alive = true;
+    private Profession profession;
 
     public Human(String name, Gender gender, SkinColor skinColor, Height height,
-                 Weight weight) {
+                 Weight weight, Profession profession) {
         this.name = name;
         this.gender = gender;
         this.skinColor = skinColor;
         this.height = height;
         this.weight = weight;
+        this.profession = profession;
     }
 
     public String getName() {
@@ -61,41 +61,11 @@ public class Human {
         this.weight = weight;
     }
 
-    public Integer getLegsQuantity() {
-        return legsQuantity;
+    public Profession getProfession() {
+        return profession;
     }
 
-    public void removeLeg() {
-        if (this.legsQuantity > 0) {
-            this.legsQuantity = this.legsQuantity - 1;
-        }
-    }
-
-    public Integer getArmsQuantity() {
-        return armsQuantity;
-    }
-
-    public void removeArm() {
-        if (this.armsQuantity > 0) {
-            this.armsQuantity = this.armsQuantity - 1;
-        }
-    }
-
-    public Integer getEarsQuantity() {
-        return earsQuantity;
-    }
-
-    public void removeEar() {
-        if (this.earsQuantity > 0) {
-            this.earsQuantity = this.earsQuantity - 1;
-        }
-    }
-
-    public Boolean isAlive() {
-        return alive;
-    }
-
-    public void die() {
-        this.alive = false;
+    public void setProfession(Profession profession) {
+        this.profession = profession;
     }
 }
