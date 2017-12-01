@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>object-orientation-with-rpg</name>
+	<description>object-orientation-with-rpg</description>
 	<description>Project created for object-oriented practice with examples from the RPG world.</description>
 
 	<parent>

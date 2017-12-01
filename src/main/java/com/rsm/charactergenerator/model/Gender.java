@@ -1,4 +1,4 @@
-package com.rsm.objectorientationwithrpg.model.hero;
+package com.rsm.charactergenerator.model;
 
 public enum Gender {
 

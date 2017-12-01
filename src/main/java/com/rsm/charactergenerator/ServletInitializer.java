@@ -1,4 +1,4 @@
-package com.rsm.objectorientationwithrpg;
+package com.rsm.charactergenerator;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
