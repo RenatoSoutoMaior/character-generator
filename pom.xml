@@ -4,12 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.rsm</groupId>
-	<artifactId>object-orientation-with-rpg</artifactId>
+	<artifactId>character-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<description>object-orientation-with-rpg</description>
-	<description>Project created for object-oriented practice with examples from the RPG world.</description>
+	<description>Character generator for Role-playing game.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
