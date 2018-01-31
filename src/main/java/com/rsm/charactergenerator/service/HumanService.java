@@ -36,8 +36,16 @@ public class HumanService {
     public Human update(Long id, Human human) {
 
         Human updatedHuman = humanRepository.findOne(id);
-        updatedHuman.setName(human.getName());
-        updatedHuman.setGender(human.getGender());
+
+        if (human.getName() != null) {
+            updatedHuman.setName(human.getName());
+        }
+
+        if (human.getGender() != null) {
+            updatedHuman.setGender(human.getGender());
+        }
+
+        humanRepository.save(updatedHuman);
         return updatedHuman;
     }
 }

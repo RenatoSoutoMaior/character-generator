@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class HumanController {
 
-    private static final String NENHUM_HUMANO_ENCONTRADO = "Nenhum Humano encontrado com o ID";
+    private static final String NO_HUMAN_FOUND = "No Human found with ID ";
     private final HumanService humanService;
 
     @Autowired
@@ -22,46 +22,60 @@ public class HumanController {
 
 
     @GetMapping("/humans")
-    public List<Human> getHumans() {
-        return humanService.getAll();
+    public ResponseEntity<Object> getHumans() {
+
+        List<Human> humans = humanService.getAll();
+
+        if (humans.isEmpty()) {
+            return new ResponseEntity<>("No Humans found.", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(humans, HttpStatus.OK);
     }
 
     @GetMapping("/human/{id}")
     public ResponseEntity<Object> getHuman(@PathVariable("id") Long id) {
 
         Human human = humanService.get(id);
+
         if (human == null) {
-            return new ResponseEntity<>(NENHUM_HUMANO_ENCONTRADO + " " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(human, HttpStatus.OK);
     }
 
     @PostMapping(value = "/human", consumes = "application/json")
-    public ResponseEntity<Human> createHuman(@RequestBody Human human) {
+    public ResponseEntity<Object> createHuman(@RequestBody Human human) {
+
+        if (human == null) {
+            return new ResponseEntity<>("Error trying to create a new Human. Please check data included.", HttpStatus.BAD_REQUEST);
+        }
 
         humanService.create(human);
-
-        return new ResponseEntity<>(human, HttpStatus.OK);
+        return new ResponseEntity<>("New Human created successfully.", HttpStatus.OK);
     }
 
     @DeleteMapping("/human/{id}")
-    public ResponseEntity<java.io.Serializable> deleteHuman(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteHuman(@PathVariable Long id) {
+
+        if (humanService.get(id) == null) {
+            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
+        }
 
         humanService.delete(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
+        return new ResponseEntity<>("Human with id " + id + " successfully removed.", HttpStatus.OK);
     }
 
     @PutMapping("/human/{id}")
     public ResponseEntity<Object> updateHuman(@PathVariable Long id, @RequestBody Human human) {
 
-        human = humanService.update(id, human);
-
-        if (null == human) {
-            return new ResponseEntity<>(NENHUM_HUMANO_ENCONTRADO + " " + id, HttpStatus.NOT_FOUND);
+        if (humanService.get(id) == null) {
+            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(human, HttpStatus.OK);
+        human = humanService.update(id, human);
+        return new ResponseEntity<>("Update performed successfully.", HttpStatus.OK);
     }
 
 }
