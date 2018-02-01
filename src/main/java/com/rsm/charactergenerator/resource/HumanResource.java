@@ -29,7 +29,7 @@ public class HumanResource {
         return new ResponseEntity<>(humans, HttpStatus.OK);
     }
 
-    @GetMapping("/human/{id}")
+    @GetMapping("/humans/{id}")
     public ResponseEntity<Object> getHuman(@PathVariable("id") Long id) {
 
         Human human = humanService.get(id);
@@ -41,7 +41,7 @@ public class HumanResource {
         return new ResponseEntity<>(human, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/human", consumes = "application/json")
+    @PostMapping(value = "/humans", consumes = "application/json")
     public ResponseEntity<Object> createHuman(@RequestBody Human human) {
 
         if (human == null) {
@@ -49,10 +49,10 @@ public class HumanResource {
         }
 
         humanService.create(human);
-        return new ResponseEntity<>("New Human created successfully.", HttpStatus.OK);
+        return new ResponseEntity<>("New Human created successfully.", HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/human/{id}")
+    @DeleteMapping("/humans/{id}")
     public ResponseEntity<Object> deleteHuman(@PathVariable Long id) {
 
         if (humanService.get(id) == null) {
@@ -60,17 +60,17 @@ public class HumanResource {
         }
 
         humanService.delete(id);
-        return new ResponseEntity<>("Human with id " + id + " successfully removed.", HttpStatus.OK);
+        return new ResponseEntity<>("Human with id " + id + " successfully removed.", HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/human/{id}")
+    @PutMapping("/humans/{id}")
     public ResponseEntity<Object> updateHuman(@PathVariable Long id, @RequestBody Human human) {
 
         if (humanService.get(id) == null) {
             return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
-        human = humanService.update(id, human);
+        humanService.update(id, human);
         return new ResponseEntity<>("Update performed successfully.", HttpStatus.OK);
     }
 
