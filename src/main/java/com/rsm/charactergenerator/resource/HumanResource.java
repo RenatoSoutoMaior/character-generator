@@ -1,4 +1,4 @@
-package com.rsm.charactergenerator.controller;
+package com.rsm.charactergenerator.resource;
 
 import com.rsm.charactergenerator.model.Human;
 import com.rsm.charactergenerator.service.HumanService;
@@ -10,16 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class HumanController {
+public class HumanResource {
 
     private static final String NO_HUMAN_FOUND = "No Human found with ID ";
-    private final HumanService humanService;
 
     @Autowired
-    public HumanController(HumanService humanService) {
-        this.humanService = humanService;
-    }
-
+    private HumanService humanService;
 
     @GetMapping("/humans")
     public ResponseEntity<Object> getHumans() {

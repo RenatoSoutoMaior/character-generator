@@ -1,0 +1,30 @@
+{
+  "name": "character-generator",
+  "version": "1.0.0",
+  "description": "Project will be a character generator for any type of activity using REST API with Java.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenatoSoutoMaior/character-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RenatoSoutoMaior/character-generator/issues"
+  },
+  "homepage": "https://github.com/RenatoSoutoMaior/character-generator#readme",
+  "dependencies": {
+    "bower": "^1.8.2"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rev": "^8.1.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-usemin": "^0.3.29"
+  }
+}

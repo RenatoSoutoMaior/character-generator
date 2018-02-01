@@ -10,12 +10,8 @@ import java.util.List;
 @Service
 public class HumanService {
 
-    private final HumanRepository humanRepository;
-
     @Autowired
-    public HumanService(HumanRepository humanRepository) {
-        this.humanRepository = humanRepository;
-    }
+    private HumanRepository humanRepository;
 
     public List<Human> getAll() {
         return humanRepository.findAll();
