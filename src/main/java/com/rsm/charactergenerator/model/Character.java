@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Human {
+public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,10 +15,10 @@ public class Human {
     private Gender gender;
     private String image;
 
-    public Human() {
+    public Character() {
     }
 
-    public Human(String name, Gender gender, String image) {
+    public Character(String name, Gender gender, String image) {
         this();
         this.name = name;
         this.gender = gender;
