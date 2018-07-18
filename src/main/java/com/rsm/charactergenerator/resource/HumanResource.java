@@ -47,7 +47,7 @@ public class HumanResource {
     @PostMapping(value = "/humans", consumes = "application/json")
     public ResponseEntity<Object> createHuman(@RequestParam String name, Gender gender, String image) {
 
-        if (isNull(name) || isNull(gender)) {
+        if (isNull(name) || isNull(gender) || isNull(image)) {
             return new ResponseEntity<>("Error trying to create a new Human. Please check data included.", HttpStatus.BAD_REQUEST);
         }
 
