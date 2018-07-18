@@ -42,6 +42,10 @@ public class HumanService {
             updatedHuman.setGender(human.getGender());
         }
 
+        if (nonNull(human.getImage())) {
+            updatedHuman.setImage(human.getImage());
+        }
+
         humanRepository.save(updatedHuman);
     }
 }

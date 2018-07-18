@@ -13,14 +13,16 @@ public class Human {
     private Long id;
     private String name;
     private Gender gender;
+    private String image;
 
     public Human() {
     }
 
-    public Human(String name, Gender gender) {
+    public Human(String name, Gender gender, String image) {
         this();
         this.name = name;
         this.gender = gender;
+        this.image = image;
     }
 
     public Long getId() {
@@ -41,5 +43,13 @@ public class Human {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

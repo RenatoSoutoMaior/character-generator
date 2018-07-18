@@ -45,20 +45,20 @@ public class HumanResource {
     }
 
     @PostMapping(value = "/humans", consumes = "application/json")
-    public ResponseEntity<Object> createHuman(@RequestParam String name, Gender gender) {
+    public ResponseEntity<Object> createHuman(@RequestParam String name, Gender gender, String image) {
 
         if (isNull(name) || isNull(gender)) {
             return new ResponseEntity<>("Error trying to create a new Human. Please check data included.", HttpStatus.BAD_REQUEST);
         }
 
-        humanService.create(new Human(name, gender));
+        humanService.create(new Human(name, gender, image));
         return new ResponseEntity<>("New Human created successfully.", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/humans/{id}")
     public ResponseEntity<Object> deleteHuman(@PathVariable Long id) {
 
-        if (humanService.get(id) == null) {
+        if (isNull(humanService.get(id))) {
             return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
@@ -69,7 +69,7 @@ public class HumanResource {
     @PutMapping("/humans/{id}")
     public ResponseEntity<Object> updateHuman(@PathVariable Long id, @RequestBody Human human) {
 
-        if (humanService.get(id) == null) {
+        if (isNull(humanService.get(id))) {
             return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
