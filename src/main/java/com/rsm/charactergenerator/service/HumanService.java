@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.Objects.nonNull;
+
 @Service
 public class HumanService {
 
@@ -29,19 +31,17 @@ public class HumanService {
         humanRepository.delete(id);
     }
 
-    public Human update(Long id, Human human) {
-
+    public void update(Long id, Human human) {
         Human updatedHuman = humanRepository.findOne(id);
 
-        if (human.getName() != null) {
+        if (nonNull(human.getName())) {
             updatedHuman.setName(human.getName());
         }
 
-        if (human.getGender() != null) {
+        if (nonNull(human.getGender())) {
             updatedHuman.setGender(human.getGender());
         }
 
         humanRepository.save(updatedHuman);
-        return updatedHuman;
     }
 }

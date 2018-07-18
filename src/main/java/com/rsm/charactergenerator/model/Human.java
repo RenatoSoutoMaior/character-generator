@@ -14,6 +14,15 @@ public class Human {
     private String name;
     private Gender gender;
 
+    public Human() {
+    }
+
+    public Human(String name, Gender gender) {
+        this();
+        this.name = name;
+        this.gender = gender;
+    }
+
     public Long getId() {
         return id;
     }
@@ -33,6 +42,4 @@ public class Human {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-
 }

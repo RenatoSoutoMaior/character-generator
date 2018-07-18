@@ -1,5 +1,6 @@
 package com.rsm.charactergenerator.resource;
 
+import com.rsm.charactergenerator.model.Gender;
 import com.rsm.charactergenerator.model.Human;
 import com.rsm.charactergenerator.service.HumanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @RestController
 public class HumanResource {
@@ -34,7 +37,7 @@ public class HumanResource {
 
         Human human = humanService.get(id);
 
-        if (human == null) {
+        if (isNull(human)) {
             return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
 
@@ -42,13 +45,13 @@ public class HumanResource {
     }
 
     @PostMapping(value = "/humans", consumes = "application/json")
-    public ResponseEntity<Object> createHuman(@RequestBody Human human) {
+    public ResponseEntity<Object> createHuman(@RequestParam String name, Gender gender) {
 
-        if (human == null) {
+        if (isNull(name) || isNull(gender)) {
             return new ResponseEntity<>("Error trying to create a new Human. Please check data included.", HttpStatus.BAD_REQUEST);
         }
 
-        humanService.create(human);
+        humanService.create(new Human(name, gender));
         return new ResponseEntity<>("New Human created successfully.", HttpStatus.CREATED);
     }
 
