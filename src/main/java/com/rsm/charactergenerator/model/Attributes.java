@@ -11,7 +11,7 @@ public class Attributes {
     private Long perception;
     private Long luck;
 
-    public Attributes(Long vitality, Long strength, Long defense, Long dexterity, Long intelligence, Long charisma, Long perception, Long luck) {
+    Attributes(Long vitality, Long strength, Long defense, Long dexterity, Long intelligence, Long charisma, Long perception, Long luck) {
         this.vitality = vitality;
         this.strength = strength;
         this.defense = defense;
