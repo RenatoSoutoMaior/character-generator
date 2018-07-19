@@ -1,5 +1,6 @@
 package com.rsm.charactergenerator.resource;
 
+import com.rsm.charactergenerator.model.Breed;
 import com.rsm.charactergenerator.model.Character;
 import com.rsm.charactergenerator.model.Gender;
 import com.rsm.charactergenerator.service.CharacterService;
@@ -45,13 +46,13 @@ public class CharacterResource {
     }
 
     @PostMapping(value = "/characters", consumes = "application/json")
-    public ResponseEntity<Object> createCharacter(@RequestParam String name, Gender gender, String image) {
+    public ResponseEntity<Object> createCharacter(@RequestParam String name, Gender gender, Breed breed) {
 
-        if (isNull(name) || isNull(gender) || isNull(image)) {
+        if (isNull(name) || isNull(gender) || isNull(breed)) {
             return new ResponseEntity<>("Error trying to create a new Character. Please check data included.", HttpStatus.BAD_REQUEST);
         }
 
-        characterService.create(new Character(name, gender, image));
+        characterService.create(new Character(name, gender, breed));
         return new ResponseEntity<>("New Character created successfully.", HttpStatus.CREATED);
     }
 

@@ -13,16 +13,17 @@ public class Character {
     private Long id;
     private String name;
     private Gender gender;
+    private Breed breed;
     private String image;
 
     public Character() {
     }
 
-    public Character(String name, Gender gender, String image) {
+    public Character(String name, Gender gender, Breed breed) {
         this();
         this.name = name;
         this.gender = gender;
-        this.image = image;
+        this.breed = breed;
     }
 
     public Long getId() {
@@ -43,6 +44,14 @@ public class Character {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
     }
 
     public String getImage() {

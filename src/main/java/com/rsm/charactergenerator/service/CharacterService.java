@@ -24,6 +24,7 @@ public class CharacterService {
     }
 
     public void create(Character character) {
+        character.setImage(ImageService.setImageCharacter(character));
         characterRepository.save(character);
     }
 
@@ -42,9 +43,11 @@ public class CharacterService {
             updatedCharacter.setGender(character.getGender());
         }
 
-        if (nonNull(character.getImage())) {
-            updatedCharacter.setImage(character.getImage());
+        if (nonNull(character.getBreed())) {
+            updatedCharacter.setBreed(character.getBreed());
         }
+
+        updatedCharacter.setImage(ImageService.setImageCharacter(character));
 
         characterRepository.save(updatedCharacter);
     }
