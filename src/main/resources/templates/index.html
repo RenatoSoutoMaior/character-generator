@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Character Generator</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-reboot.css}"/>
+    <script th:href="@{/js/bootstrap.js}"></script>
+    <script th:href="@{/js/angular.js}"></script>
+    <script th:href="@{/app/app.module.js}"></script>
+    <script th:href="@{/app/characters.controller.js}"></script>
+</head>
+<body ng-app="app" ng-controller="CharactersController as vm">
+
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Breed</th>
+    </thead>
+    <tr ng-repeat="character in vm.characters">
+        <td>{{character.name}}</td>
+        <td>{{character.gender}}</td>
+        <td>{{character.breed}}</td>
+    </tr>
+</table>
+
+</body>
+</html>
