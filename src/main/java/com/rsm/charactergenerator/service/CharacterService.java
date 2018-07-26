@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.Objects.nonNull;
-
 @Service
 public class CharacterService {
 
@@ -30,25 +28,5 @@ public class CharacterService {
 
     public void delete(Long id) {
         characterRepository.delete(id);
-    }
-
-    public void update(Long id, Character character) {
-        Character updatedCharacter = characterRepository.findOne(id);
-
-        if (nonNull(character.getName())) {
-            updatedCharacter.setName(character.getName());
-        }
-
-        if (nonNull(character.getGender())) {
-            updatedCharacter.setGender(character.getGender());
-        }
-
-        if (nonNull(character.getBreed())) {
-            updatedCharacter.setBreed(character.getBreed());
-        }
-
-        updatedCharacter.setImage(ImageService.setImageCharacter(character));
-
-        characterRepository.save(updatedCharacter);
     }
 }

@@ -66,16 +66,4 @@ public class CharacterResource {
         characterService.delete(id);
         return new ResponseEntity<>("Character with id " + id + " successfully removed.", HttpStatus.NO_CONTENT);
     }
-
-    @PutMapping("/characters/{id}")
-    public ResponseEntity<Object> updateCharacter(@PathVariable Long id, @RequestBody Character character) {
-
-        if (isNull(characterService.get(id))) {
-            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
-        }
-
-        characterService.update(id, character);
-        return new ResponseEntity<>("Update performed successfully.", HttpStatus.OK);
-    }
-
 }
