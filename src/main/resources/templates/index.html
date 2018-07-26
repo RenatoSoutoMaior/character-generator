@@ -1,30 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Character Generator</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap-reboot.css}"/>
-    <script th:href="@{/js/bootstrap.js}"></script>
-    <script th:href="@{/js/angular.js}"></script>
-    <script th:href="@{/app/app.module.js}"></script>
-    <script th:href="@{/app/characters.controller.js}"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src="../app/app.module.js"></script>
+    <script type="text/javascript" src="../app/characters.controller.js"></script>
 </head>
 <body ng-app="app" ng-controller="CharactersController as vm">
+<div class="container">
+    <div class="row" style="margin-top: 20px; font-size: 25px;">
+        <form style="margin: 10px;">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                           ng-model="vm.characters.name" style="margin-bottom:5px"/>
+                </div>
+                <div class="col-md-2 form-group">
+                    <label class="control-label" for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" ng-model="vm.characters.gender">
+                        <option value="">Select...</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label class="control-label" for="breed">Breed</label>
+                    <select class="form-control" id="breed" name="breed" ng-model="vm.characters.breed">
+                        <option value="">Select...</option>
+                        <option ng-repeat="breed in vm.breeds" value="{{breed.value}}">{{breed.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-md-12" style="margin-bottom: 10px;">
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-block"
+                            ng-click="vm.create(vm.characters.name, vm.characters.gender, vm.characters.breed)"
+                            ng-disabled="form.$invalid">
+                        <i class="glyphicon glyphicon-ok"></i>&nbsp; Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-<table class="table">
-    <thead>
-    <th>Name</th>
-    <th>Gender</th>
-    <th>Breed</th>
-    </thead>
-    <tr ng-repeat="character in vm.characters">
-        <td>{{character.name}}</td>
-        <td>{{character.gender}}</td>
-        <td>{{character.breed}}</td>
-    </tr>
-</table>
-
+    <div class="row">
+        <div class="table-responsive" style="margin-top: 25px;">
+            <table class="table table-striped" style="font-size: 25px;">
+                <thead>
+                <th></th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Breed</th>
+                <th></th>
+                </thead>
+                <tr ng-repeat="character in vm.characters">
+                    <td style="width:100px;height:100px"><img style="width:90px; height:90px;"
+                                                              ng-src="{{character.image}}"/></td>
+                    <td>{{character.name | limitTo: 50}}</td>
+                    <td style="width:130px;height:100px">{{character.gender}}</td>
+                    <td style="width:130px;height:100px">{{character.breed}}</td>
+                    <td style="width:100px;height:100px">
+                        <button class="btn btn-danger btn-block" ng-click="vm.remove(character.id)"
+                                type="button" ng-disabled="form.$invalid">
+                            <i class="glyphicon glyphicon-remove"></i>&nbsp; Remove
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
