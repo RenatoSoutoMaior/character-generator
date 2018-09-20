@@ -12,7 +12,10 @@
     <script type="text/javascript" src="../app/characters.controller.js"></script>
 </head>
 <body ng-app="app" ng-controller="CharactersController as vm">
-<div class="container">
+<div class="container" style="margin-top: 20px;">
+    <nav class="row navbar navbar-inverse">
+        <h1 style="text-align: center; color: white; padding-bottom: 10px;">Character Generator</h1>
+    </nav>
     <div class="row" style="margin-top: 20px; font-size: 25px;">
         <form style="margin: 10px;">
             <div class="row">
@@ -51,27 +54,28 @@
 
     <div class="row">
         <div class="table-responsive" style="margin-top: 25px;">
-            <table class="table table-striped" style="font-size: 25px;">
+            <table class="table table-striped" style="font-size: 20px;">
                 <thead>
-                <th></th>
+                <!--<th></th>-->
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Breed</th>
                 <th></th>
                 </thead>
                 <tr ng-repeat="character in vm.characters">
-                    <td style="width:100px;height:100px"><img style="width:90px; height:90px;"
-                                                              ng-src="{{character.image}}"/></td>
+                    <!--<td style="width:100px;height:100px"><img style="width:90px; height:90px;"-->
+                                                              <!--ng-src="{{character.image}}"/></td>-->
                     <td>{{character.name | limitTo: 50}}</td>
-                    <td style="width:130px;height:100px">{{character.gender}}</td>
-                    <td style="width:130px;height:100px">{{character.breed}}</td>
-                    <td style="width:100px;height:100px">
+                    <td style="width:150px;height:50px">{{character.gender}}</td>
+                    <td style="width:150px;height:50px">{{character.breed}}</td>
+                    <td style="width:100px;height:50px">
                         <button class="btn btn-danger btn-block" ng-click="vm.remove(character.id)"
                                 type="button" ng-disabled="form.$invalid">
                             <i class="glyphicon glyphicon-remove"></i>&nbsp; Remove
                         </button>
                     </td>
                 </tr>
+
             </table>
         </div>
     </div>
