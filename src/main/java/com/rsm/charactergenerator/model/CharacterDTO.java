@@ -2,9 +2,9 @@ package com.rsm.charactergenerator.model;
 
 public class CharacterDTO {
 
-    String name;
-    Gender gender;
-    Breed breed;
+    private String name;
+    private Gender gender;
+    private Breed breed;
 
     public String getName() {
         return name;
