@@ -19,11 +19,11 @@ public class Character {
     public Character() {
     }
 
-    public Character(String name, Gender gender, Breed breed) {
+    public Character(CharacterDTO characterDTO) {
         this();
-        this.name = name;
-        this.gender = gender;
-        this.breed = breed;
+        this.name = characterDTO.getName();
+        this.gender = characterDTO.getGender();
+        this.breed = characterDTO.getBreed();
     }
 
     public Long getId() {

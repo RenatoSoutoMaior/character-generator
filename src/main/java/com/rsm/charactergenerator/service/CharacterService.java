@@ -1,6 +1,7 @@
 package com.rsm.charactergenerator.service;
 
 import com.rsm.charactergenerator.model.Character;
+import com.rsm.charactergenerator.model.CharacterDTO;
 import com.rsm.charactergenerator.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,9 @@ public class CharacterService {
         return characterRepository.findOne(id);
     }
 
-    public void create(Character character) {
-        character.setImage(ImageService.setImageCharacter(character));
+    public void create(CharacterDTO characterDTO) {
+        Character character = new Character(characterDTO);
+        character.setImage(ImageService.setImageCharacter(characterDTO));
         characterRepository.save(character);
     }
 
@@ -32,22 +34,22 @@ public class CharacterService {
         characterRepository.delete(id);
     }
 
-    public void update(Long id, Character character) {
+    public void update(Long id, CharacterDTO characterDTO) {
         Character updatedCharacter = characterRepository.findOne(id);
 
-        if (nonNull(character.getName())) {
-            updatedCharacter.setName(character.getName());
+        if (nonNull(characterDTO.getName())) {
+            updatedCharacter.setName(characterDTO.getName());
         }
 
-        if (nonNull(character.getGender())) {
-            updatedCharacter.setGender(character.getGender());
+        if (nonNull(characterDTO.getGender())) {
+            updatedCharacter.setGender(characterDTO.getGender());
         }
 
-        if (nonNull(character.getBreed())) {
-            updatedCharacter.setBreed(character.getBreed());
+        if (nonNull(characterDTO.getBreed())) {
+            updatedCharacter.setBreed(characterDTO.getBreed());
         }
 
-        updatedCharacter.setImage(ImageService.setImageCharacter(character));
+        updatedCharacter.setImage(ImageService.setImageCharacter(characterDTO));
 
         characterRepository.save(updatedCharacter);
     }
