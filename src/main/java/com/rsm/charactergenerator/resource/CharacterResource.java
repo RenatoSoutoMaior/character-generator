@@ -53,13 +53,12 @@ public class CharacterResource {
             return new ResponseEntity<>("Error trying to create a new Character. Please check data included.", HttpStatus.BAD_REQUEST);
         }
 
-        characterService.create(new Character(characterDTO.getName(), characterDTO.getGender(), characterDTO.getBreed()));
+        characterService.create(characterDTO);
         return new ResponseEntity<>("New Character created successfully.", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/characters/{id}")
     public ResponseEntity<Object> deleteCharacter(@PathVariable Long id) {
-
         if (isNull(characterService.get(id))) {
             return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
         }
@@ -67,4 +66,15 @@ public class CharacterResource {
         characterService.delete(id);
         return new ResponseEntity<>("Character with id " + id + " successfully removed.", HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping("/characters/{id}")
+    public ResponseEntity<Object> updateCharacter(@PathVariable Long id, @RequestBody CharacterDTO characterDTO) {
+        if (isNull(characterService.get(id))) {
+            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
+        }
+
+        characterService.update(id, characterDTO);
+        return new ResponseEntity<>("Update performed successfully.", HttpStatus.OK);
+    }
+
 }

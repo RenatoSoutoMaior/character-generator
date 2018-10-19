@@ -1,13 +1,13 @@
 package com.rsm.charactergenerator.service;
 
-import com.rsm.charactergenerator.model.Character;
+import com.rsm.charactergenerator.model.CharacterDTO;
 import com.rsm.charactergenerator.model.Gender;
 
 class ImageService {
 
-    static String setImageCharacter(Character character) {
-        if (Gender.MALE.equals(character.getGender())) {
-            switch (character.getBreed()) {
+    static String setImageCharacter(CharacterDTO characterDTO) {
+        if (Gender.MALE.equals(characterDTO.getGender())) {
+            switch (characterDTO.getBreed()) {
                 case ALCHEMIST:
                     return "../images/alch-m.png";
                 case ASSASSIN:
@@ -47,8 +47,8 @@ class ImageService {
                 default:
                     return "No Male image found.";
             }
-        } else {
-            switch (character.getBreed()) {
+        } else if (Gender.FEMALE.equals(characterDTO.getGender())) {
+            switch (characterDTO.getBreed()) {
                 case ALCHEMIST:
                     return "../images/alch-f.png";
                 case ASSASSIN:
@@ -87,6 +87,11 @@ class ImageService {
                     return "../images/warr-f.png";
                 default:
                     return "No Female image found.";
+            }
+        } else {
+            switch (characterDTO.getBreed()) {
+                default:
+                    return "No image found.";
             }
         }
     }
