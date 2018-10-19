@@ -3,6 +3,8 @@ package com.rsm.charactergenerator.resource;
 import com.rsm.charactergenerator.model.Character;
 import com.rsm.charactergenerator.model.CharacterDTO;
 import com.rsm.charactergenerator.service.CharacterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +18,8 @@ import static java.util.Objects.isNull;
 @RestController
 public class CharacterResource {
 
-    private static final String NO_HUMAN_FOUND = "No Character found with ID {}";
+    private final Logger log = LoggerFactory.getLogger(CharacterResource.class);
+    private static final String NO_HUMAN_FOUND = "No Character found with ID {}.";
 
     private CharacterService characterService;
 
@@ -30,9 +33,11 @@ public class CharacterResource {
         List<Character> characters = characterService.getAll();
 
         if (characters.isEmpty()) {
-            return new ResponseEntity<>("No Characters found.", HttpStatus.NOT_FOUND);
+            log.warn("No Characters found.");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        log.info(characters.size() > 1 ? "Characters found successfully." : "Character successfully found.");
         return new ResponseEntity<>(characters, HttpStatus.OK);
     }
 
@@ -41,40 +46,47 @@ public class CharacterResource {
         Character character = characterService.get(id);
 
         if (isNull(character)) {
-            return new ResponseEntity<>(String.format(NO_HUMAN_FOUND, id), HttpStatus.NOT_FOUND);
+            log.warn(String.format(NO_HUMAN_FOUND, id));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        log.info("Character created successfully.");
         return new ResponseEntity<>(character, HttpStatus.OK);
     }
 
     @PostMapping(value = "/characters", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> createCharacter(@RequestBody CharacterDTO characterDTO) {
         if (isNull(characterDTO.getName()) || isNull(characterDTO.getGender()) || isNull(characterDTO.getBreed())) {
-            return new ResponseEntity<>("Error trying to create a new Character. Please check data included.", HttpStatus.BAD_REQUEST);
+            log.warn("Error trying to create a new Character. Please check data included.");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         characterService.create(characterDTO);
-        return new ResponseEntity<>("New Character created successfully.", HttpStatus.CREATED);
+        log.info("New Character created successfully.");
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/characters/{id}")
     public ResponseEntity<Object> deleteCharacter(@PathVariable Long id) {
         if (isNull(characterService.get(id))) {
-            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
+            log.warn(String.format(NO_HUMAN_FOUND, id));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         characterService.delete(id);
-        return new ResponseEntity<>("Character with id " + id + " successfully removed.", HttpStatus.NO_CONTENT);
+        log.info(String.format("Character with id {} successfully removed.", id));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/characters/{id}")
     public ResponseEntity<Object> updateCharacter(@PathVariable Long id, @RequestBody CharacterDTO characterDTO) {
         if (isNull(characterService.get(id))) {
-            return new ResponseEntity<>(NO_HUMAN_FOUND + id + ".", HttpStatus.NOT_FOUND);
+            log.warn(String.format(NO_HUMAN_FOUND, id));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         characterService.update(id, characterDTO);
-        return new ResponseEntity<>("Update performed successfully.", HttpStatus.OK);
+        log.info("Update performed successfully.", id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
