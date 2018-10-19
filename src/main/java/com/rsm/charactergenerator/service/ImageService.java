@@ -47,7 +47,7 @@ class ImageService {
                 default:
                     return "No Male image found.";
             }
-        } else {
+        } else if (Gender.FEMALE.equals(characterDTO.getGender())) {
             switch (characterDTO.getBreed()) {
                 case ALCHEMIST:
                     return "/resources/static/images/alch-f.png";
@@ -87,6 +87,11 @@ class ImageService {
                     return "/resources/static/images/warr-f.png";
                 default:
                     return "No Female image found.";
+            }
+        } else {
+            switch (characterDTO.getBreed()) {
+                default:
+                    return "No image found.";
             }
         }
     }

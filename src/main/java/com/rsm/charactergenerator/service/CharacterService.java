@@ -13,8 +13,12 @@ import static java.util.Objects.nonNull;
 @Service
 public class CharacterService {
 
+    private final CharacterRepository characterRepository;
+
     @Autowired
-    private CharacterRepository characterRepository;
+    public CharacterService(CharacterRepository characterRepository) {
+        this.characterRepository = characterRepository;
+    }
 
     public List<Character> getAll() {
         return characterRepository.findAll();
