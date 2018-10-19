@@ -47,29 +47,48 @@
         }
 
         function getAllCharacters() {
-            var url = "/characters";
-            var charactersPromise = $http.get(url);
-            charactersPromise.then(function (response) {
+            $http({
+                method: 'GET',
+                url: '/characters'
+            }).then(function successCallback(response) {
                 vm.characters = response.data;
+            }, function errorCallback(response) {
             });
         }
 
+
         function create(name, gender, breed) {
-            var url = "/characters?name=" + name + "&gender=" + gender + "&breed=" + breed;
-            var charactersPromise = $http.post(url, {headers: {'Content-Type': 'application/json'}});
-            charactersPromise.then(function (response) {
+            var req = {
+                method: 'POST',
+                url: '/characters',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    name: name,
+                    gender: gender,
+                    breed: breed
+                }
+            };
+
+            $http(req).then(function successCallback(response) {
                 vm.characters = response.data;
+                getAllCharacters();
+            }, function errorCallback(response) {
             });
-            getAllCharacters();
         }
 
         function remove(id) {
-            var url = "/characters/" + id;
-            var charactersPromise = $http.delete(url);
-            charactersPromise.then(function (response) {
+            var req = {
+                method: 'DELETE',
+                url: '/characters/' + id
+            };
+
+            $http(req).then(function successCallback(response) {
                 vm.characters = response.data;
+                getAllCharacters();
+            }, function errorCallback(response) {
             });
-            getAllCharacters();
         }
     }
 })();
