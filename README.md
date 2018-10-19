@@ -1,2 +1,2 @@
 # Character Generator
-Project will be a character generator for any type of activity using REST API with Java.
+A simple character generator using REST API with Java and a demonstration of the API in use.
