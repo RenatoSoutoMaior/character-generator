@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CharacterGeneratorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CharacterGeneratorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CharacterGeneratorApplication.class, args);
+    }
 }
