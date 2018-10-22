@@ -1,2 +1,4 @@
 # Character Generator
-A simple character generator using REST API with Java and a demonstration of the API in use.
+_A simple character generator using REST API with Java._
+ 
+>######Demonstration of the API in use on Heroku: https://character-generator-rsm.herokuapp.com
