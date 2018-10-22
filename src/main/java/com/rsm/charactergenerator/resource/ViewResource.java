@@ -8,6 +8,6 @@ public class ViewResource {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "index.html";
     }
 }
