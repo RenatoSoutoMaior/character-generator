@@ -5,6 +5,7 @@ public class CharacterDTO {
     private String name;
     private Gender gender;
     private Breed breed;
+    private String image;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class CharacterDTO {
 
     public void setBreed(Breed breed) {
         this.breed = breed;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

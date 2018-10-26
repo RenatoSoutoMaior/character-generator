@@ -15,7 +15,7 @@ class ImageService {
                 case BARBARIAN:
                     return "../images/barb-m.png";
                 case BARD:
-                    return "../images/bard-m.jpǵ";
+                    return "../images/bard-m.png";
                 case CLERIC:
                     return "../images/cler.m.png";
                 case DRUID:
@@ -42,6 +42,8 @@ class ImageService {
                     return "../images/sham-m.png";
                 case THIEF:
                     return "../images/thie-m.png";
+                case VILLAGER:
+                    return "../images/vill-m.png";
                 case WARRIOR:
                     return "../images/warr-m.png";
                 default:
@@ -83,6 +85,8 @@ class ImageService {
                     return "../images/sham-f.png";
                 case THIEF:
                     return "../images/thie-f.png";
+                case VILLAGER:
+                    return "../images/vill-f.png";
                 case WARRIOR:
                     return "../images/warr-f.png";
                 default:

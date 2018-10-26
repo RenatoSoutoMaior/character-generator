@@ -19,7 +19,6 @@ import static java.util.Objects.isNull;
 public class CharacterResource {
 
     private final Logger log = LoggerFactory.getLogger(CharacterResource.class);
-    private static final String NO_HUMAN_FOUND = "No Character found with ID {}.";
 
     private CharacterService characterService;
 
@@ -46,7 +45,7 @@ public class CharacterResource {
         Character character = characterService.get(id);
 
         if (isNull(character)) {
-            log.warn(String.format(NO_HUMAN_FOUND, id));
+            log.warn("No Character found with ID " + id + ".");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -69,24 +68,31 @@ public class CharacterResource {
     @DeleteMapping("/characters/{id}")
     public ResponseEntity<Object> deleteCharacter(@PathVariable Long id) {
         if (isNull(characterService.get(id))) {
-            log.warn(String.format(NO_HUMAN_FOUND, id));
+            log.warn("No Character found with ID " + id + ".");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         characterService.delete(id);
-        log.info(String.format("Character with id {} successfully removed.", id));
+        log.info("Character with id " + id + " successfully removed.");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/characters/{id}")
     public ResponseEntity<Object> updateCharacter(@PathVariable Long id, @RequestBody CharacterDTO characterDTO) {
         if (isNull(characterService.get(id))) {
-            log.warn(String.format(NO_HUMAN_FOUND, id));
+            log.warn("No Character found with ID " + id + ".");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         characterService.update(id, characterDTO);
-        log.info("Update performed successfully.", id);
+        log.info("Successfully " + id + " update.");
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/random-character")
+    public ResponseEntity<Object> randomCharacter() {
+        characterService.randomCharacter();
+        log.info("New Character created successfully.");
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
