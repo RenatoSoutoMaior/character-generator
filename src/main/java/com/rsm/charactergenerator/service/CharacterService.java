@@ -1,7 +1,9 @@
 package com.rsm.charactergenerator.service;
 
+import com.rsm.charactergenerator.model.Breed;
 import com.rsm.charactergenerator.model.Character;
 import com.rsm.charactergenerator.model.CharacterDTO;
+import com.rsm.charactergenerator.model.Gender;
 import com.rsm.charactergenerator.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +58,15 @@ public class CharacterService {
         updatedCharacter.setImage(ImageService.setImageCharacter(characterDTO));
 
         characterRepository.save(updatedCharacter);
+    }
+
+    public void randomCharacter() {
+        CharacterDTO characterDTO = new CharacterDTO();
+        characterDTO.setBreed(Breed.randomBreed());
+        characterDTO.setGender(Gender.randomGender());
+        characterDTO.setName(RandomService.randomName(characterDTO.getGender()));
+        characterDTO.setImage(ImageService.setImageCharacter(characterDTO));
+
+        characterRepository.save(new Character(characterDTO));
     }
 }

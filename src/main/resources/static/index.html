@@ -16,66 +16,61 @@
     <nav class="row navbar navbar-inverse">
         <h1 style="text-align: center; color: white; padding-bottom: 10px;">Character Generator</h1>
     </nav>
-    <div class="row" style="margin-top: 20px; font-size: 25px;">
-        <form style="margin: 10px;">
-            <div class="row">
-                <div class="col-md-3 form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" autocomplete="off"
-                           ng-model="vm.characters.name" style="margin-bottom:5px"/>
-                </div>
-                <div class="col-md-2 form-group">
-                    <label class="control-label" for="gender">Gender</label>
-                    <select class="form-control" id="gender" name="gender" ng-model="vm.characters.gender">
-                        <option value="">Select...</option>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                    </select>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label class="control-label" for="breed">Breed</label>
-                    <select class="form-control" id="breed" name="breed" ng-model="vm.characters.breed">
-                        <option value="">Select...</option>
-                        <option ng-repeat="breed in vm.breeds" value="{{breed.value}}">{{breed.name}}</option>
-                    </select>
-                </div>
+
+    <form style="margin-bottom: 10px;">
+        <div class="row" style="margin-top: 20px; font-size: 25px;">
+            <div class="col-md-3 form-group">
+                <label class="control-label" for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                       ng-model="vm.characters.name" style="margin-bottom:5px" maxlength="22"/>
             </div>
-            <div class="row col-md-12" style="margin-bottom: 10px;">
-                <div class="btn-group">
-                    <button class="btn btn-primary btn-block"
-                            ng-click="vm.create(vm.characters.name, vm.characters.gender, vm.characters.breed)"
-                            ng-disabled="form.$invalid">
-                        <i class="glyphicon glyphicon-ok"></i>&nbsp; Create
-                    </button>
-                </div>
+            <div class="col-md-3 form-group">
+                <label class="control-label" for="breed">Breed</label>
+                <select class="form-control" id="breed" name="breed" ng-model="vm.characters.breed">
+                    <option value="">Select...</option>
+                    <option ng-repeat="breed in vm.breeds" value="{{breed.value}}">{{breed.name}}</option>
+                </select>
             </div>
-        </form>
-    </div>
+            <div class="col-md-3 form-group">
+                <label class="control-label" for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" ng-model="vm.characters.gender">
+                    <option value="">Select...</option>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+            <div class="col-md-3 btn-group" style="padding-top: 40px;">
+                <button class="btn btn-primary" style="margin-left: 35px; margin-right: 5px;"
+                        ng-click="vm.create(vm.characters.name, vm.characters.gender, vm.characters.breed)"
+                        ng-disabled="form.$invalid">
+                    <i class="glyphicon glyphicon-ok"></i>&nbsp; Create
+                </button>
+                <button class="btn btn-warning"
+                        ng-click="vm.randomCharacter()"
+                        ng-disabled="form.$invalid">
+                    <i class="glyphicon glyphicon-random"></i>&nbsp; Random
+                </button>
+            </div>
+        </div>
+    </form>
 
     <div class="row">
-        <div class="table-responsive" style="margin-top: 25px;">
-            <table class="table table-striped" style="font-size: 20px;">
-                <thead>
-                <!--<th></th>-->
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Breed</th>
-                <th></th>
-                </thead>
-                <tr ng-repeat="character in vm.characters">
-                    <!--<td style="width:100px;height:100px"><img style="width:90px; height:90px;"-->
-                    <!--ng-src="{{character.image}}"/></td>-->
-                    <td>{{character.name | limitTo: 50}}</td>
-                    <td style="width:150px;height:50px">{{character.gender}}</td>
-                    <td style="width:150px;height:50px">{{character.breed}}</td>
-                    <td style="width:100px;height:50px">
-                        <button class="btn btn-danger btn-block" ng-click="vm.remove(character.id)"
-                                type="button" ng-disabled="form.$invalid">
-                            <i class="glyphicon glyphicon-remove"></i>&nbsp; Remove
-                        </button>
-                    </td>
-                </tr>
-            </table>
+        <div ng-repeat="character in vm.characters">
+            <div class="col-sm-4 col-md-3">
+                <div class="thumbnail" style="text-align: center;">
+                    <img style="width:200px;height:200px" src="{{character.image}}"
+                         alt="{{character.breed}}{{character.gender}}">
+                    <div class="caption">
+                        <h4 style="font-weight: bold;">{{character.name | limitTo: 22}}</h4>
+                        <p style="font-style: italic;">
+                            {{character.breed}}&nbsp;&nbsp;-&nbsp;&nbsp;{{character.gender}}</p>
+                        <p>
+                            <a ng-click="vm.remove(character.id)" class="btn btn-danger" role="button">
+                                <i class="glyphicon glyphicon-remove"></i>&nbsp; Remove</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

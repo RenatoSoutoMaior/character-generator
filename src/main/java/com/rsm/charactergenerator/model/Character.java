@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import static java.util.Objects.nonNull;
+
 @Entity
 public class Character {
 
@@ -21,9 +23,10 @@ public class Character {
 
     public Character(CharacterDTO characterDTO) {
         this();
-        this.name = characterDTO.getName();
-        this.gender = characterDTO.getGender();
-        this.breed = characterDTO.getBreed();
+        this.name = nonNull(characterDTO.getName()) ? characterDTO.getName() : "John";
+        this.gender = nonNull(characterDTO.getGender()) ? characterDTO.getGender() : Gender.MALE;
+        this.breed = nonNull(characterDTO.getBreed()) ? characterDTO.getBreed() : Breed.VILLAGER;
+        this.image = nonNull(characterDTO.getImage()) ? characterDTO.getImage() : "src/main/resources/static/images/vill-m.png";
     }
 
     public Long getId() {

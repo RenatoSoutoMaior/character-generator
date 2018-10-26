@@ -34,11 +34,13 @@
             {name: "Rogue", value: 'ROGUE'},
             {name: "Shaman", value: 'SHAMAN'},
             {name: "Thief", value: 'THIEF'},
+            {name: "Villager", value: 'VILLAGER'},
             {name: "Warrior", value: 'WARRIOR'}];
 
         vm.getAllCharacters = getAllCharacters;
         vm.create = create;
         vm.remove = remove;
+        vm.randomCharacter = randomCharacter;
 
         init();
 
@@ -82,6 +84,19 @@
             var req = {
                 method: 'DELETE',
                 url: '/characters/' + id
+            };
+
+            $http(req).then(function successCallback(response) {
+                vm.characters = response.data;
+                getAllCharacters();
+            }, function errorCallback(response) {
+            });
+        }
+
+        function randomCharacter() {
+            var req = {
+                method: 'POST',
+                url: '/random-character'
             };
 
             $http(req).then(function successCallback(response) {
