@@ -15,7 +15,7 @@ class ImageService {
                 case BARBARIAN:
                     return "../images/barb-m.png";
                 case BARD:
-                    return "../images/bard-m.jpǵ";
+                    return "../images/bard-m.png";
                 case CLERIC:
                     return "../images/cler.m.png";
                 case DRUID:
