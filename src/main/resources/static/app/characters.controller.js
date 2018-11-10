@@ -41,6 +41,7 @@
         vm.create = create;
         vm.remove = remove;
         vm.randomCharacter = randomCharacter;
+        vm.removeAll = removeAll;
 
         init();
 
@@ -80,6 +81,19 @@
             });
         }
 
+        function randomCharacter() {
+            var req = {
+                method: 'POST',
+                url: '/random-character'
+            };
+
+            $http(req).then(function successCallback(response) {
+                vm.characters = response.data;
+                getAllCharacters();
+            }, function errorCallback(response) {
+            });
+        }
+
         function remove(id) {
             var req = {
                 method: 'DELETE',
@@ -93,10 +107,10 @@
             });
         }
 
-        function randomCharacter() {
+        function removeAll() {
             var req = {
-                method: 'POST',
-                url: '/random-character'
+                method: 'DELETE',
+                url: '/characters'
             };
 
             $http(req).then(function successCallback(response) {

@@ -31,7 +31,7 @@
                     <option ng-repeat="breed in vm.breeds" value="{{breed.value}}">{{breed.name}}</option>
                 </select>
             </div>
-            <div class="col-md-3 form-group">
+            <div class="col-md-2 form-group">
                 <label class="control-label" for="gender">Gender</label>
                 <select class="form-control" id="gender" name="gender" ng-model="vm.characters.gender">
                     <option value="">Select...</option>
@@ -39,16 +39,21 @@
                     <option value="FEMALE">Female</option>
                 </select>
             </div>
-            <div class="col-md-3 btn-group" style="padding-top: 40px;">
+            <div class="col-md-4 btn-group" style="padding-top: 40px;">
                 <button class="btn btn-primary" style="margin-left: 35px; margin-right: 5px;"
                         ng-click="vm.create(vm.characters.name, vm.characters.gender, vm.characters.breed)"
                         ng-disabled="form.$invalid">
                     <i class="glyphicon glyphicon-ok"></i>&nbsp; Create
                 </button>
-                <button class="btn btn-warning"
+                <button class="btn btn-warning" style="margin-right: 5px;"
                         ng-click="vm.randomCharacter()"
                         ng-disabled="form.$invalid">
                     <i class="glyphicon glyphicon-random"></i>&nbsp; Random
+                </button>
+                <button class="btn btn-danger"
+                        ng-click="vm.removeAll()"
+                        ng-disabled="form.$invalid">
+                    <i class="glyphicon glyphicon-remove"></i>&nbsp; Remove All
                 </button>
             </div>
         </div>
