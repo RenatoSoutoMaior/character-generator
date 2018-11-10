@@ -65,6 +65,13 @@ public class CharacterResource {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/random-character")
+    public ResponseEntity<Object> randomCharacter() {
+        characterService.randomCharacter();
+        log.info("New Character created successfully.");
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/characters/{id}")
     public ResponseEntity<Object> deleteCharacter(@PathVariable Long id) {
         if (isNull(characterService.get(id))) {
@@ -77,22 +84,10 @@ public class CharacterResource {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/characters/{id}")
-    public ResponseEntity<Object> updateCharacter(@PathVariable Long id, @RequestBody CharacterDTO characterDTO) {
-        if (isNull(characterService.get(id))) {
-            log.warn("No Character found with ID " + id + ".");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        characterService.update(id, characterDTO);
-        log.info("Successfully " + id + " update.");
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/random-character")
-    public ResponseEntity<Object> randomCharacter() {
-        characterService.randomCharacter();
-        log.info("New Character created successfully.");
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @DeleteMapping("/characters")
+    public ResponseEntity<Object> deleteCharacter() {
+        characterService.deleteAll();
+        log.info("All characters were successfully removed.");
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
